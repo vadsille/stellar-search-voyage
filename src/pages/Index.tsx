@@ -1,84 +1,95 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Rocket, Microscope, Database, Sparkles } from "lucide-react";
+import { Database, Sparkles, Target, Users } from "lucide-react";
 import heroImage from "@/assets/hero-space.jpg";
 
 const Index = () => {
   const navigate = useNavigate();
 
+  const stats = [
+    { value: "608+", label: "Publications" },
+    { value: "15+", label: "Research Topics" },
+    { value: "30+", label: "Missions" },
+  ];
+
   const features = [
     {
       icon: Database,
-      title: "Vast Research Archive",
-      description: "Access thousands of NASA research publications and datasets",
-    },
-    {
-      icon: Microscope,
-      title: "Scientific Excellence",
-      description: "Cutting-edge studies from space biology to deep space exploration",
+      title: "Comprehensive Database",
+      description: "Access to 608+ curated NASA publications",
     },
     {
       icon: Sparkles,
-      title: "AI-Powered Discovery",
-      description: "Intelligent search and personalized recommendations",
+      title: "AI Summarization",
+      description: "Get instant insights with AI-powered analysis",
+    },
+    {
+      icon: Target,
+      title: "Mission Planning",
+      description: "Data-driven insights for Mars missions",
+    },
+    {
+      icon: Users,
+      title: "Multi-Role Support",
+      description: "Tailored views for scientists, managers, and planners",
     },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
         </div>
         
-        <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="relative flex flex-col items-center justify-center min-h-screen text-center px-6 py-20">
           <div className="max-w-5xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div className="space-y-4">
-              <h1 className="text-7xl md:text-8xl font-bold text-gradient leading-tight">
-                Explore the Universe
+            <div className="space-y-6">
+              <h1 className="text-6xl md:text-8xl font-bold text-gradient leading-tight">
+                Space Biology
+                <br />
+                Knowledge Engine
               </h1>
-              <h2 className="text-3xl md:text-4xl font-semibold text-foreground/90">
-                of NASA Research
-              </h2>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                Discover, analyze, and unlock insights from 608+ NASA space biology publications. 
+                Your gateway to understanding life beyond Earth.
+              </p>
             </div>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Discover groundbreaking space research, from microgravity experiments 
-              to deep space exploration missions
-            </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <Button
                 onClick={() => navigate("/explore")}
                 size="lg"
                 className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
               >
-                <Rocket className="mr-2 h-5 w-5" />
-                Begin Exploration
+                Explore Now
               </Button>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-foreground/30 rounded-full" />
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="glass-panel p-6 rounded-xl">
+                  <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm md:text-base text-muted-foreground">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
       <div className="max-w-7xl mx-auto px-6 py-24">
-        <h2 className="text-4xl font-bold text-center mb-16 text-gradient">
-          What You'll Discover
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -91,10 +102,10 @@ const Index = () => {
                     <Icon className="h-8 w-8 text-background" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-semibold mb-4 text-foreground">
+                <h3 className="text-xl font-semibold mb-3 text-foreground">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground text-lg">
+                <p className="text-muted-foreground">
                   {feature.description}
                 </p>
               </div>
@@ -103,23 +114,32 @@ const Index = () => {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <div className="glass-panel p-12 rounded-3xl space-y-6">
-          <h2 className="text-4xl font-bold text-gradient">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            Join scientists, explorers, and space enthusiasts from around the world
-          </p>
-          <Button
-            onClick={() => navigate("/explore")}
-            size="lg"
-            className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity mt-6"
-          >
-            <Rocket className="mr-2 h-5 w-5" />
-            Launch Portal
-          </Button>
+      {/* Mission Section */}
+      <div className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="glass-panel p-10 rounded-3xl space-y-6">
+            <h2 className="text-4xl font-bold text-gradient">
+              Our Mission
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              To democratize access to space biology research and empower the next generation 
+              of scientists, researchers, and mission planners with cutting-edge knowledge 
+              discovery tools. We bridge the gap between raw research data and actionable 
+              insights for humanity's journey to Mars and beyond.
+            </p>
+          </div>
+
+          <div className="glass-panel p-10 rounded-3xl space-y-6">
+            <h2 className="text-4xl font-bold text-gradient">
+              Our Vision
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              A future where every researcher, student, and space enthusiast can effortlessly 
+              explore the vast landscape of space biology knowledge. We envision AstroBase as 
+              the cornerstone platform that accelerates discoveries and enables sustainable 
+              human presence in space.
+            </p>
+          </div>
         </div>
       </div>
 
